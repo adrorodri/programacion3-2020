@@ -5,31 +5,31 @@
 
     <ImageView
         android:id="@+id/imageViewCoronavirus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/coronavirus_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/imageViewCoronavirus"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/imageViewCoronavirus"/>
+        android:layout_alignParentTop="true"
+        android:src="@drawable/coronavirus_icon" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/imageViewCoronavirus"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewCoronavirus"
+        android:layout_alignParentStart="true"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"/>
+        android:text="@string/hello_world" />
 
 </RelativeLayout>
