@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Programacion 3 2020</string>
     <string name="hello_world">HELLO WORLD</string>
+    <string name="example_1">León</string>
+    <string name="example_2">Tigre</string>
+    <string name="example_3">Vaca</string>
+    <string name="example_4">Pato</string>
+    <string name="example_5">Gato</string>
+    <string name="login_description">Ingresa tus datos para ingresar</string>
+    <string name="login_switch">Iniciar sesion en modo Administrador</string>
+    <string name="login_hint_username">Nombre de Usuario</string>
+    <string name="login_hint_password">Contraseña</string>
+    <string name="login_forgot_password">Olvidaste tu contraseña?</string>
+    <string name="login_button">Iniciar Sesión</string>
 </resources>
