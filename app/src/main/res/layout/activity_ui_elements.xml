@@ -23,6 +23,7 @@
         android:src="@drawable/leon" />
 
     <Switch
+        android:id="@+id/switchAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="true"
@@ -71,13 +72,16 @@
                 android:tint="@color/colorAccent" />
 
             <EditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_hint_password"
+                android:imeOptions="actionSearch"
                 android:inputType="textPassword" />
         </LinearLayout>
 
         <Button
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="@color/colorAccent"
