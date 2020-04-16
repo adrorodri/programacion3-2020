@@ -12,4 +12,5 @@
     <string name="login_hint_password">Contraseña</string>
     <string name="login_forgot_password">Olvidaste tu contraseña?</string>
     <string name="login_button">Iniciar Sesión</string>
+    <string name="main_menu_header">Bienvenido!</string>
 </resources>

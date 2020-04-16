@@ -1,5 +1,7 @@
 package com.upb.programacion32020;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -16,32 +18,51 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // Mis elementos
     Button loginButton;
     Switch adminSwitch;
+    EditText editTextUsername;
     EditText editTextPassword;
     ProgressBar progressBar;
+    TextView tvSolucionExamen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Seteamos el Layout a mostrarse para este activity
         setContentView(R.layout.activity_login);
 
+        // Obtenemos los elementos del layout mostrandose ahora
         loginButton = findViewById(R.id.loginButton);
         adminSwitch = findViewById(R.id.switchAdmin);
+        editTextUsername = findViewById(R.id.usernameEditText);
         editTextPassword = findViewById(R.id.passwordEditText);
         progressBar = findViewById(R.id.loadingProgressBar);
+        tvSolucionExamen = findViewById(R.id.tvSolucionExamen);
 
+        // Podemos escuchar a eventos de los elementos de la pantalla
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
+
+                // Abrir otro activity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("adminEnabled", adminSwitch.isChecked());
+
+                Usuario user = new Usuario(editTextUsername.getText().toString(), editTextPassword.getText().toString());
+                intent.putExtra("user", user);
+
+                startActivity(intent);
             }
         });
-        loginButton.setOnLongClickListener(new View.OnLongClickListener() {
+
+        tvSolucionExamen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Log.d("TEST", "TEST BOTON LONG");
-                return true;
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
