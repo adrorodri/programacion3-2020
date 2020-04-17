@@ -1,6 +1,5 @@
 package com.upb.programacion32020;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextPassword;
     ProgressBar progressBar;
     TextView tvSolucionExamen;
+
+    int requestCodeIngresar = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 Usuario user = new Usuario(editTextUsername.getText().toString(), editTextPassword.getText().toString());
                 intent.putExtra("user", user);
 
-                startActivity(intent);
+                startActivityForResult(intent, requestCodeIngresar);
             }
         });
 
@@ -86,6 +89,15 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestCodeIngresar && resultCode == RESULT_OK && data != null) {
+            String nombre = data.getStringExtra("nombre");
+            Toast.makeText(this, nombre + " vuelva pronto!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
