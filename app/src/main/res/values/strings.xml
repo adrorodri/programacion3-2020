@@ -13,4 +13,8 @@
     <string name="login_forgot_password">Olvidaste tu contraseña?</string>
     <string name="login_button">Iniciar Sesión</string>
     <string name="main_menu_header">Bienvenido!</string>
+    <string name="main_menu_button_edit">Editar</string>
+    <string name="main_menu_button_products">Productos</string>
+    <string name="main_menu_button_delivery">Delivery</string>
+    <string name="main_menu_button_exit">Salir</string>
 </resources>
