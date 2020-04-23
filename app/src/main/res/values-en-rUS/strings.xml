@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Programacion 3 2020</string>
+    <string name="hello_world">HELLO WORLD</string>
+    <string name="example_1">Lion</string>
+    <string name="example_2">Tiger</string>
+    <string name="example_3">Cow</string>
+    <string name="example_4">Duck</string>
+    <string name="example_5">Cat</string>
+    <string name="login_description">Enter you info to login</string>
+    <string name="login_switch">Login in Admin mode</string>
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_forgot_password">Forgot your password?</string>
+    <string name="login_button">Login</string>
+    <string name="main_menu_header">Welcome!</string>
+    <string name="main_menu_button_edit">Edit</string>
+    <string name="main_menu_button_products">Products</string>
+    <string name="main_menu_button_delivery">Delivery</string>
+    <string name="main_menu_button_exit">Exit</string>
+    <string name="abrir_solucion_del_examen">Open Exam Solution</string>
+    <string name="label_on">ON</string>
+    <string name="label_off">OFF</string>
+</resources>

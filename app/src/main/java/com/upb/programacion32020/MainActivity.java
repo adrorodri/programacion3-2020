@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         Button buttonEditar = new Button(this);
         buttonEditar.setText(R.string.main_menu_button_edit);
         buttonEditar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+        buttonEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EditarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Button buttonProductos = new Button(this);
         buttonProductos.setText(R.string.main_menu_button_products);

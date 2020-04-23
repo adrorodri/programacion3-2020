@@ -48,18 +48,20 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginBottom="20dp"
+                android:tint="@color/colorAccent"
                 android:src="@drawable/logo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="#FFF"
+                android:background="@drawable/bkg_round"
                 android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:src="@drawable/user"
                     android:tint="@color/colorAccent" />
 
@@ -67,6 +69,7 @@
                     android:id="@+id/usernameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:hint="@string/login_hint_username"
                     android:inputType="text" />
             </LinearLayout>
@@ -75,12 +78,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="#FFF"
+                android:background="@drawable/bkg_round"
                 android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:src="@drawable/password"
                     android:tint="@color/colorAccent" />
 
@@ -88,6 +92,7 @@
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:hint="@string/login_hint_password"
                     android:imeOptions="actionSearch"
                     android:inputType="textPassword" />
@@ -97,7 +102,7 @@
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/colorAccent"
+                android:background="@drawable/bkg_button"
                 android:text="@string/login_button"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
@@ -114,9 +119,9 @@
                 android:id="@+id/tvSolucionExamen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:gravity="center"
-                android:text="Abrir Solucion del Examen"/>
+                android:padding="10dp"
+                android:text="@string/abrir_solucion_del_examen" />
         </LinearLayout>
 
         <TextView
