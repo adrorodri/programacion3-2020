@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +20,10 @@ public class EditarActivity extends AppCompatActivity {
     ImageButton ibRuler;
     TextView tvScaleType;
     RadioGroup rgCajeros;
+    CheckBox cbAspirina;
+    CheckBox cbIbuprofeno;
+    CheckBox cbVitaminaC;
+    CheckBox cbEnsure;
 
     // SOLO EJEMPLO PARA ENUMS
     private enum TipoManzana {
@@ -52,6 +57,10 @@ public class EditarActivity extends AppCompatActivity {
         ibRuler = findViewById(R.id.ib_ruler);
         tvScaleType = findViewById(R.id.tv_scaleType);
         rgCajeros = findViewById(R.id.rg_cajeros);
+        cbAspirina = findViewById(R.id.cbVentaAspirina);
+        cbIbuprofeno = findViewById(R.id.cbVentaIbuprofeno);
+        cbVitaminaC = findViewById(R.id.cbVentaVitaminaC);
+        cbEnsure = findViewById(R.id.cbVentaEnsure);
 
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -118,6 +127,17 @@ public class EditarActivity extends AppCompatActivity {
                         Toast.makeText(EditarActivity.this, "CAJERO 3 SELECCIONADO", Toast.LENGTH_SHORT).show();
                         break;
                     }
+                }
+            }
+        });
+
+        cbAspirina.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (checked) {
+                    Toast.makeText(EditarActivity.this, "Habilitada la venta de aspirinas", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(EditarActivity.this, "Deshabilitada la venta de aspirinas", Toast.LENGTH_SHORT).show();
                 }
             }
         });

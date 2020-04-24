@@ -1,7 +1,9 @@
 package com.upb.programacion32020;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUsername;
     EditText editTextPassword;
     ProgressBar progressBar;
+    ProgressBar progressBarHorizontal;
     TextView tvSolucionExamen;
 
     int requestCodeIngresar = 1;
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.usernameEditText);
         editTextPassword = findViewById(R.id.passwordEditText);
         progressBar = findViewById(R.id.loadingProgressBar);
+        progressBarHorizontal = findViewById(R.id.loadingProgressBarHorizontal);
         tvSolucionExamen = findViewById(R.id.tvSolucionExamen);
 
         // Podemos escuchar a eventos de los elementos de la pantalla
@@ -51,13 +55,20 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // Abrir otro activity
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("adminEnabled", adminSwitch.isChecked());
 
                 Usuario user = new Usuario(editTextUsername.getText().toString(), editTextPassword.getText().toString());
                 intent.putExtra("user", user);
 
-                startActivityForResult(intent, requestCodeIngresar);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                            startActivityForResult(intent, requestCodeIngresar);
+                    }
+                }, 2000);
+
+                animarProgressBar();
             }
         });
 
@@ -89,6 +100,19 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void animarProgressBar() {
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setIntValues(0, 100);
+        valueAnimator.setDuration(2000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                progressBarHorizontal.setProgress((int)valueAnimator.getAnimatedValue());
+            }
+        });
+        valueAnimator.start();
     }
 
     @Override
@@ -123,6 +147,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        progressBar.setVisibility(View.INVISIBLE);
+        progressBarHorizontal.setProgress(0);
     }
 
     @Override

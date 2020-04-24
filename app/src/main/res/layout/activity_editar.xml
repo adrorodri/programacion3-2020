@@ -10,21 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pay_with_creditcard"/>
+        android:text="@string/pay_with_creditcard" />
 
     <ToggleButton
         android:id="@+id/tb_pago_tarjeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="@string/label_on"
-        android:textOff="@string/label_off"/>
+        android:textOff="@string/label_off"
+        android:textOn="@string/label_on" />
 
     <ImageView
         android:id="@+id/iv_farmacia"
-        android:layout_marginTop="@dimen/margin_small"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/farmacia"/>
+        android:layout_marginTop="@dimen/margin_small"
+        android:src="@drawable/farmacia" />
 
     <TextView
         android:id="@+id/tv_scaleType"
@@ -37,28 +37,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_ruler"/>
+        android:src="@drawable/ic_ruler" />
 
     <RadioGroup
         android:id="@+id/rg_cajeros"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
         <RadioButton
             android:id="@+id/rb_cajero_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cajero 1 (Fernando)"/>
+            android:text="Cajero 1 (Fernando)" />
 
         <RadioButton
             android:id="@+id/rb_cajero_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cajero 2 (Victoria)"/>
+            android:text="Cajero 2 (Victoria)" />
 
         <RadioButton
             android:id="@+id/rb_cajero_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cajero 3 (Alvaro)"/>
+            android:text="Cajero 3 (Alvaro)" />
     </RadioGroup>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <CheckBox
+            android:id="@+id/cbVentaAspirina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:text="Venta de aspirina" />
+
+        <CheckBox
+            android:id="@+id/cbVentaIbuprofeno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:text="Venta de ibuprofeno" />
+
+        <CheckBox
+            android:id="@+id/cbVentaVitaminaC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:text="Venta de Vitamina C" />
+
+        <CheckBox
+            android:id="@+id/cbVentaEnsure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:text="Venta de Ensure" />
+    </GridLayout>
 </LinearLayout>
