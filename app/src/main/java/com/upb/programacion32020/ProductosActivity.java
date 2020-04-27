@@ -1,13 +1,13 @@
 package com.upb.programacion32020;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,8 @@ public class ProductosActivity extends AppCompatActivity {
     ArrayList<String> listaProductos = new ArrayList<>();
 
     ListView listViewProductos;
-    Button buttonUsuarios;
+    Button buttonPersonas;
+    Button buttonPersonasSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,8 @@ public class ProductosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_productos);
 
         listViewProductos = findViewById(R.id.lvProductos);
-        buttonUsuarios = findViewById(R.id.btUsuarios);
+        buttonPersonas = findViewById(R.id.btPersonas);
+        buttonPersonasSpinner = findViewById(R.id.btPersonasSpinner);
 
         listaProductos.add("Aspirina");
         listaProductos.add("Ibuprofeno");
@@ -34,13 +36,22 @@ public class ProductosActivity extends AppCompatActivity {
         for (int i = 0; i < 60; i++) {
             listaProductos.add("Producto " + i);
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaProductos);
         listViewProductos.setAdapter(adapter);
 
-        buttonUsuarios.setOnClickListener(new View.OnClickListener() {
+        buttonPersonas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProductosActivity.this, UsuariosActivity.class);
+                Intent intent = new Intent(ProductosActivity.this, PersonasListViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonPersonasSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductosActivity.this, PersonasSpinnerActivity.class);
                 startActivity(intent);
             }
         });

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,25 +14,25 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class UsuariosAdapter extends ArrayAdapter<Usuario> {
+public class PersonasAdapter extends ArrayAdapter<Persona> {
 
-    private ArrayList<Usuario> usuarios;
+    private ArrayList<Persona> personas;
 
-    public UsuariosAdapter(Context context, ArrayList<Usuario> objects) {
-        super(context, 0, objects);
-        usuarios = objects;
+    public PersonasAdapter(Context context, ArrayList<Persona> personas) {
+        super(context, R.layout.list_item_personas, personas);
+        this.personas = personas;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_usuarios, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_personas, null);
 
         ImageView ivUsuario = view.findViewById(R.id.ivUsuario);
         TextView tvName = view.findViewById(R.id.tvName);
 
-        ivUsuario.setImageResource(usuarios.get(position).getImage());
-        tvName.setText(usuarios.get(position).getNombre());
+        ivUsuario.setImageResource(personas.get(position).getImage());
+        tvName.setText(personas.get(position).getNombre());
 
         return view;
     }
