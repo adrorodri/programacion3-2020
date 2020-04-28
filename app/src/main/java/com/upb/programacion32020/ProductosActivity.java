@@ -18,6 +18,7 @@ public class ProductosActivity extends AppCompatActivity {
     ListView listViewProductos;
     Button buttonPersonas;
     Button buttonPersonasSpinner;
+    Button buttonPersonasRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,14 @@ public class ProductosActivity extends AppCompatActivity {
         listViewProductos = findViewById(R.id.lvProductos);
         buttonPersonas = findViewById(R.id.btPersonas);
         buttonPersonasSpinner = findViewById(R.id.btPersonasSpinner);
+        buttonPersonasRecycler = findViewById(R.id.btPersonasRecycler);
 
         listaProductos.add("Aspirina");
         listaProductos.add("Ibuprofeno");
         listaProductos.add("Vitamina C");
         listaProductos.add("Ensure");
 
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 1500; i++) {
             listaProductos.add("Producto " + i);
         }
 
@@ -52,6 +54,14 @@ public class ProductosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductosActivity.this, PersonasSpinnerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonPersonasRecycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductosActivity.this, PersonasRecyclerActivity.class);
                 startActivity(intent);
             }
         });

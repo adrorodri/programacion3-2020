@@ -19,6 +19,12 @@
         android:layout_height="wrap_content"
         android:text="Personas Spinner"/>
 
+    <Button
+        android:id="@+id/btPersonasRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personas Recycler"/>
+
     <ListView
         android:id="@+id/lvProductos"
         android:layout_width="match_parent"

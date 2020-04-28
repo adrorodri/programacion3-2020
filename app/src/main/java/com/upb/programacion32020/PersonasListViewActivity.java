@@ -3,7 +3,10 @@ package com.upb.programacion32020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,9 +25,18 @@ public class PersonasListViewActivity extends AppCompatActivity {
 
         listaPersonas.add(new Persona("Sergio", R.drawable.persona1));
         listaPersonas.add(new Persona("Gustavo", R.drawable.persona2));
-        listaPersonas.add(new Persona("Keanu Reeves", R.drawable.persona3));
+
+        for(int i = 0; i < 1500; i++) {
+            listaPersonas.add(new Persona("Keanu Reeves " + i, R.drawable.persona3));
+        }
 
         PersonasAdapter adapter = new PersonasAdapter(this, listaPersonas);
+        listViewUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(PersonasListViewActivity.this, listaPersonas.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+            }
+        });
         listViewUsuarios.setAdapter(adapter);
     }
 }

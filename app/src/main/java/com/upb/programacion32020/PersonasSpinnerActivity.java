@@ -3,8 +3,11 @@ package com.upb.programacion32020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,17 @@ public class PersonasSpinnerActivity extends AppCompatActivity {
 
         // Spinner de Objetos personalizados
         PersonasBaseAdapter adapter = new PersonasBaseAdapter(this, listaPersonas);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(PersonasSpinnerActivity.this, listaPersonas.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         spinner.setAdapter(adapter);
     }
 }
