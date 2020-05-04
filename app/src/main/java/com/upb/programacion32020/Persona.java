@@ -1,6 +1,8 @@
 package com.upb.programacion32020;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
     private String nombre;
     private int image;
 

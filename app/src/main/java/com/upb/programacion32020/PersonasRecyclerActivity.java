@@ -1,5 +1,6 @@
 package com.upb.programacion32020;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -36,6 +37,9 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Persona persona) {
                 Toast.makeText(PersonasRecyclerActivity.this, persona.getNombre(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PersonasRecyclerActivity.this, DetallesPersonaActivity.class);
+                intent.putExtra("persona", persona);
+                startActivity(intent);
             }
         });
         recyclerViewPersonas.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
