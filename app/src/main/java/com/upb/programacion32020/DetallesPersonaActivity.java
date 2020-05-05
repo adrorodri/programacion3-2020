@@ -20,10 +20,12 @@ public class DetallesPersonaActivity extends AppCompatActivity {
     ImageView imageViewPersona;
     Button buttonShare;
     ImageButton buttonCamera;
+    ImageButton buttonGallery;
     Persona persona;
     Uri imageUri;
 
     static int REQUEST_CAMERA = 1234;
+    static int REQUEST_GALLERY = 2468;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class DetallesPersonaActivity extends AppCompatActivity {
         imageViewPersona = findViewById(R.id.ivPersona);
         buttonShare = findViewById(R.id.btShare);
         buttonCamera = findViewById(R.id.btChangePhoto);
+        buttonGallery = findViewById(R.id.btGallery);
 
         File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "photo.jpg");
         imageUri = FileProvider.getUriForFile(
@@ -66,6 +69,16 @@ public class DetallesPersonaActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CAMERA);
             }
         });
+
+        buttonGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "Selecciona una imagen:"), REQUEST_GALLERY);
+            }
+        });
     }
 
     @Override
@@ -75,6 +88,9 @@ public class DetallesPersonaActivity extends AppCompatActivity {
 //            Bitmap image = data.getParcelableExtra("data");
 //            imageViewPersona.setImageBitmap(image);
             imageViewPersona.setImageURI(imageUri);
+        }
+        if (requestCode == REQUEST_GALLERY && resultCode == RESULT_OK) {
+            imageViewPersona.setImageURI(data.getData());
         }
     }
 }

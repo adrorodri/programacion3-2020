@@ -42,5 +42,19 @@ public class PersonasListViewActivity extends AppCompatActivity {
             }
         });
         listViewUsuarios.setAdapter(adapter);
+
+
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                Toast.makeText(this, intent.getStringExtra(Intent.EXTRA_TEXT), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // Manejar otro tipo de intent actions, MAIN, CALL, DIAL, SEND_MULTIPLE, etc...
+        }
     }
 }
