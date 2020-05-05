@@ -1,18 +1,29 @@
 package com.upb.programacion32020;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
+import java.io.File;
 
 public class DetallesPersonaActivity extends AppCompatActivity {
 
     ImageView imageViewPersona;
     Button buttonShare;
+    ImageButton buttonCamera;
     Persona persona;
+    Uri imageUri;
+
+    static int REQUEST_CAMERA = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +32,13 @@ public class DetallesPersonaActivity extends AppCompatActivity {
 
         imageViewPersona = findViewById(R.id.ivPersona);
         buttonShare = findViewById(R.id.btShare);
+        buttonCamera = findViewById(R.id.btChangePhoto);
+
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "photo.jpg");
+        imageUri = FileProvider.getUriForFile(
+                this,
+                "com.upb.programacion32020.provider",
+                file);
 
         Intent intent = getIntent();
         if (intent.hasExtra("persona")) {
@@ -38,5 +56,25 @@ public class DetallesPersonaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, REQUEST_CAMERA);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK) {
+//            Bitmap image = data.getParcelableExtra("data");
+//            imageViewPersona.setImageBitmap(image);
+            imageViewPersona.setImageURI(imageUri);
+        }
     }
 }

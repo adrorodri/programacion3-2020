@@ -17,6 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:text="@string/share"/>
+
+    <ImageButton
+        android:id="@+id/btChangePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:padding="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_camera"/>
 
 </FrameLayout>
