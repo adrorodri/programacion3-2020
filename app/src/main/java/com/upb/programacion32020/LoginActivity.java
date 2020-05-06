@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
     int requestCodeIngresar = 1;
 
+    SharedPreferencesManager sharedPreferencesManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         progressBarHorizontal = findViewById(R.id.loadingProgressBarHorizontal);
         tvSolucionExamen = findViewById(R.id.tvSolucionExamen);
 
+        sharedPreferencesManager = new SharedPreferencesManager(this);
+
         // Podemos escuchar a eventos de los elementos de la pantalla
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +65,11 @@ public class LoginActivity extends AppCompatActivity {
                 Usuario user = new Usuario(editTextUsername.getText().toString(), editTextPassword.getText().toString());
                 intent.putExtra("user", user);
 
-                // Singleton TEST
+                // Datos Temporales: Singleton TEST
                 UsuarioSingleton.getInstance().usuario = user;
+
+                // Datos Almacenados: SharedPReferences
+                sharedPreferencesManager.saveUser(user);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

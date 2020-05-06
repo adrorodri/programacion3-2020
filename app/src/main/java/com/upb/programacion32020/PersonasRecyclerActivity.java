@@ -17,12 +17,16 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewPersonas;
 
+    SharedPreferencesManager sharedPreferencesManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personas_recycler);
 
         recyclerViewPersonas = findViewById(R.id.rvPersonas);
+
+        sharedPreferencesManager = new SharedPreferencesManager(this);
 
         listaPersonas.add(new Persona("Sergio", R.drawable.persona1));
         listaPersonas.add(new Persona("Gustavo", R.drawable.persona2));
@@ -44,5 +48,8 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
         });
         recyclerViewPersonas.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPersonas.setAdapter(adapter);
+
+        String username = sharedPreferencesManager.getUser().getUsername();
+        Toast.makeText(this, "El Usuario guardado es: " + username, Toast.LENGTH_SHORT).show();
     }
 }
