@@ -61,10 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                 Usuario user = new Usuario(editTextUsername.getText().toString(), editTextPassword.getText().toString());
                 intent.putExtra("user", user);
 
+                // Singleton TEST
+                UsuarioSingleton.getInstance().usuario = user;
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                            startActivityForResult(intent, requestCodeIngresar);
+                        startActivityForResult(intent, requestCodeIngresar);
                     }
                 }, 2000);
 
@@ -109,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                progressBarHorizontal.setProgress((int)valueAnimator.getAnimatedValue());
+                progressBarHorizontal.setProgress((int) valueAnimator.getAnimatedValue());
             }
         });
         valueAnimator.start();

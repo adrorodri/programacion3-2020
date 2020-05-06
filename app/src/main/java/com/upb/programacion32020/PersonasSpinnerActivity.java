@@ -1,13 +1,12 @@
 package com.upb.programacion32020;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,10 @@ public class PersonasSpinnerActivity extends AppCompatActivity {
         listaProductos.add("Ibuprofeno");
         listaProductos.add("Vitamina C");
         listaProductos.add("Ensure");
+
+        // Singleton TEST
+        String nombreUsuario = UsuarioSingleton.getInstance().usuario.getUsername();
+        Toast.makeText(this, "El Usuario del Singleton es: " + nombreUsuario, Toast.LENGTH_SHORT).show();
 
         // Spinner de Strings
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaProductos);
