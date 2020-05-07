@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -29,10 +30,11 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ProgressBar progressBarHorizontal;
     TextView tvSolucionExamen;
+    CheckBox cbRememberMe;
 
     int requestCodeIngresar = 1;
 
-    SharedPreferencesManager sharedPreferencesManager;
+    UserSharedPreferencesManager userSharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loadingProgressBar);
         progressBarHorizontal = findViewById(R.id.loadingProgressBarHorizontal);
         tvSolucionExamen = findViewById(R.id.tvSolucionExamen);
+        cbRememberMe = findViewById(R.id.cbRememberMe);
 
-        sharedPreferencesManager = new SharedPreferencesManager(this);
+        userSharedPreferencesManager = new UserSharedPreferencesManager(this);
+
+        if (userSharedPreferencesManager.getUser().getUsername() != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("user", userSharedPreferencesManager.getUser());
+            startActivity(intent);
+        }
 
         // Podemos escuchar a eventos de los elementos de la pantalla
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                 UsuarioSingleton.getInstance().usuario = user;
 
                 // Datos Almacenados: SharedPReferences
-                sharedPreferencesManager.saveUser(user);
+                if (cbRememberMe.isChecked()) {
+                    userSharedPreferencesManager.saveUser(user);
+                } else {
+                    userSharedPreferencesManager.deleteUser();
+                }
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

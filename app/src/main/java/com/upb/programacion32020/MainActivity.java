@@ -1,7 +1,6 @@
 package com.upb.programacion32020;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -13,16 +12,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     Usuario user;
+    UserSharedPreferencesManager userSharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userSharedPreferencesManager = new UserSharedPreferencesManager(this);
 
         // Parent Linear Layout
         LinearLayout linearLayout = new LinearLayout(this);
@@ -103,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userSharedPreferencesManager.deleteUser();
                 Intent intent = new Intent();
                 intent.putExtra("nombre", user.getUsername());
                 setResult(RESULT_OK, intent);

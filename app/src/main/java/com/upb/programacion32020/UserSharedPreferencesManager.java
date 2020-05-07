@@ -10,11 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
-public class SharedPreferencesManager {
+public class UserSharedPreferencesManager {
 
     private Context context;
 
-    public SharedPreferencesManager(Context context) {
+    public UserSharedPreferencesManager(Context context) {
         this.context = context;
     }
 
@@ -66,5 +66,18 @@ public class SharedPreferencesManager {
         usuario = gson.fromJson(usuarioString, Usuario.class);
 
         return usuario;
+    }
+
+    public void updateUser(String newPassword) {
+        Usuario usuario = getUser();
+        usuario.setPassword(newPassword);
+        saveUser(usuario);
+    }
+
+    public void deleteUser() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("usuario");
+        editor.apply();
     }
 }

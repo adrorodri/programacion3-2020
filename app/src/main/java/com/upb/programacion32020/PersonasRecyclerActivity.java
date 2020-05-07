@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -17,7 +16,7 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewPersonas;
 
-    SharedPreferencesManager sharedPreferencesManager;
+    UserSharedPreferencesManager userSharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
 
         recyclerViewPersonas = findViewById(R.id.rvPersonas);
 
-        sharedPreferencesManager = new SharedPreferencesManager(this);
+        userSharedPreferencesManager = new UserSharedPreferencesManager(this);
 
         listaPersonas.add(new Persona("Sergio", R.drawable.persona1));
         listaPersonas.add(new Persona("Gustavo", R.drawable.persona2));
@@ -49,7 +48,7 @@ public class PersonasRecyclerActivity extends AppCompatActivity {
         recyclerViewPersonas.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPersonas.setAdapter(adapter);
 
-        String username = sharedPreferencesManager.getUser().getUsername();
+        String username = userSharedPreferencesManager.getUser().getUsername();
         Toast.makeText(this, "El Usuario guardado es: " + username, Toast.LENGTH_SHORT).show();
     }
 }

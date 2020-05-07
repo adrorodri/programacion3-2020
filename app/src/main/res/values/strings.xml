@@ -16,11 +16,12 @@
     <string name="main_menu_button_edit">Editar</string>
     <string name="main_menu_button_products">Productos</string>
     <string name="main_menu_button_delivery">Delivery</string>
-    <string name="main_menu_button_exit">Salir</string>
+    <string name="main_menu_button_exit">Cerrar Sesion</string>
     <string name="abrir_solucion_del_examen">Abrir Solucion del Examen</string>
     <string name="label_on">ON</string>
     <string name="label_off">OFF</string>
     <string name="pay_with_creditcard">Pago Con Tarjeta:</string>
     <string name="share">Share</string>
     <string name="change_photo">Change Photo</string>
+    <string name="remember_me">Remember Me</string>
 </resources>
