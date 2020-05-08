@@ -21,17 +21,7 @@ public class CartSharedPreferencesManager {
     public void addToCart(Product product) {
         ArrayList<Product> currentProducts = getProducts();
         currentProducts.add(product);
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences("ShoppingCart", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // Simple
-        Gson gson = new Gson();
-        String productString = gson.toJson(currentProducts);
-
-        editor.putString("products", productString);
-        editor.apply();
-
+        writeToSharedPreferences(currentProducts);
         Toast.makeText(context, "Producto agregado al carrito correctamente", Toast.LENGTH_SHORT).show();
     }
 
@@ -41,10 +31,40 @@ public class CartSharedPreferencesManager {
 
         // Simple
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Product>>(){}.getType();
+        Type listType = new TypeToken<ArrayList<Product>>() {
+        }.getType();
         ArrayList<Product> productos = gson.fromJson(productosString, listType);
 
         return productos;
+    }
+
+    public void deleteFromCart(Product product) {
+        ArrayList<Product> products = getProducts();
+        int position = -1;
+        for (int i = 0; i < products.size(); i++) {
+            if(product.name.equals(products.get(i).name)) {
+                position = i;
+                break;
+            }
+        }
+        if(position > -1) {
+            products.remove(position);
+        }
+
+        writeToSharedPreferences(products);
+        Toast.makeText(context, "Producto eliminado del carrito correctamente", Toast.LENGTH_SHORT).show();
+    }
+
+    public void writeToSharedPreferences(ArrayList<Product> products) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("ShoppingCart", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Simple
+        Gson gson = new Gson();
+        String productString = gson.toJson(products);
+
+        editor.putString("products", productString);
+        editor.apply();
     }
 
     public int getTotal() {

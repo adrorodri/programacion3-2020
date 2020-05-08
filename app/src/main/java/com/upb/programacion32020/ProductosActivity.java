@@ -94,6 +94,20 @@ public class ProductosActivity extends AppCompatActivity {
         });
 
         updateTotal();
+
+        ibCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductosActivity.this, ShoppingCartActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateTotal();
     }
 
     private void updateTotal() {
