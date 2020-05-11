@@ -55,6 +55,13 @@ public class CartSharedPreferencesManager {
         Toast.makeText(context, "Producto eliminado del carrito correctamente", Toast.LENGTH_SHORT).show();
     }
 
+    public void deleteAll() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("ShoppingCart", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("products");
+        editor.apply();
+    }
+
     public void writeToSharedPreferences(ArrayList<Product> products) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("ShoppingCart", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

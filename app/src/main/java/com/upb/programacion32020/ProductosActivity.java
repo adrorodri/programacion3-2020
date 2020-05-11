@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -22,10 +25,13 @@ public class ProductosActivity extends AppCompatActivity {
     Button buttonPersonas;
     Button buttonPersonasSpinner;
     Button buttonPersonasRecycler;
+    Button buttonNotifications;
     ImageButton ibCart;
+    ImageButton ibShare;
     TextView tvTotal;
 
     CartSharedPreferencesManager cartSharedPreferencesManager;
+    FileManager fileManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +39,15 @@ public class ProductosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_productos);
 
         cartSharedPreferencesManager = new CartSharedPreferencesManager(this);
+        fileManager = new FileManager(this);
 
         listViewProductos = findViewById(R.id.lvProductos);
         buttonPersonas = findViewById(R.id.btPersonas);
         buttonPersonasSpinner = findViewById(R.id.btPersonasSpinner);
         buttonPersonasRecycler = findViewById(R.id.btPersonasRecycler);
+        buttonNotifications = findViewById(R.id.btNotifications);
         ibCart = findViewById(R.id.ibCart);
+        ibShare = findViewById(R.id.ibShare);
         tvTotal = findViewById(R.id.tvTotal);
 
 //        listaProductos.add("Aspirina");
@@ -93,6 +102,14 @@ public class ProductosActivity extends AppCompatActivity {
             }
         });
 
+        buttonNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductosActivity.this, NotificationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         updateTotal();
 
         ibCart.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +117,16 @@ public class ProductosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ProductosActivity.this, ShoppingCartActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ibShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Product> products = cartSharedPreferencesManager.getProducts();
+                Gson gson = new Gson();
+                fileManager.writeToFile(gson.toJson(products));
+                Toast.makeText(ProductosActivity.this, "Archivo creado correctamente", Toast.LENGTH_SHORT).show();
             }
         });
     }
