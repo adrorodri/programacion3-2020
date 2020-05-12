@@ -2,14 +2,17 @@ package com.upb.programacion32020;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -92,6 +95,36 @@ public class NotificationsActivity extends AppCompatActivity {
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(NotificationsActivity.this);
                 notificationManager.notify(1234, builder.build());
+            }
+        });
+
+        btPopupMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(NotificationsActivity.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_shark: {
+                                Toast.makeText(NotificationsActivity.this, "Click en Shark", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            case R.id.menu_share: {
+                                Toast.makeText(NotificationsActivity.this, "Texto compartido", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            case R.id.menu_cart: {
+                                Intent intent = new Intent(NotificationsActivity.this, ShoppingCartActivity.class);
+                                startActivity(intent);
+                                break;
+                            }
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
             }
         });
     }
